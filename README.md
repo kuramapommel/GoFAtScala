@@ -1,1 +1,1 @@
-# GoFAtScala
+# ScalaGoF
