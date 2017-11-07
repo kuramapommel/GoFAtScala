@@ -3,9 +3,9 @@ package com.github.kuramapommel.ScalaGoF.Iterator
 case class BookShelfIterator( bookShelf: BookShelf ) extends Iterator[Book] {
   private[this] var index = 0
 
-  def hasNext() = index < bookShelf.length
+  def hasNext = index < bookShelf.length
 
-  def next() = {
+  def next = {
     val tmpIndex = index
     index = index + 1
     bookShelf.getBookAt( tmpIndex )
