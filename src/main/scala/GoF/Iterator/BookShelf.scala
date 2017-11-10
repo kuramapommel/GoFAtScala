@@ -18,7 +18,7 @@ final case class BookShelfIterator( bookShelf: BookShelf ) extends Iterator[Book
 final case class BookShelf( maxSize: Int ) extends Aggregate[Book] {
   private[this] var books : Array[Book] = Array.empty
 
-  private[this] def tryEither[T]( f: => T )( implicit onError: Throwable => Either[Throwable,T] = { t:Throwable => Left( t ) }): Either[Throwable,T] = {
+  private[this] def tryEither[T]( f: => T )( implicit onError: Throwable => Either[Throwable,T] = { t:Throwable => Left( t ) }) = {
     try{
       Right( f )
     } catch {
@@ -31,7 +31,7 @@ final case class BookShelf( maxSize: Int ) extends Aggregate[Book] {
   def appendBook( book: Book ) = {
     val tmpArray = books :+ book
     if ( tmpArray.length > maxSize ) {
-      Left( new RuntimeException )
+      Left( "over max size" )
     } else {
       books = books :+ book
       Right( this )

@@ -4,7 +4,7 @@ import org.scalatest._
 
 class BookTest extends FlatSpec with Matchers {
 
-  "A Book" should "has name" in {
+  "A Book" should "have name" in {
     import com.github.kuramapommel.ScalaGoF.GoF.Iterator.Book
     val name = "bookName"
     val book = Book( name )
