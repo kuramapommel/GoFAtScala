@@ -6,10 +6,11 @@ final case class BookShelfIterator( bookShelf: BookShelf ) extends Iterator[Book
   override def hasNext = index < bookShelf.length
 
   override def next = {
-    val tmpIndex = index
-    index = index + 1
-    bookShelf.getBookAt( tmpIndex ) match {
-      case Right( book ) => Some( book )
+    bookShelf.getBookAt( index ) match {
+      case Right( book ) => {
+        index = index + 1
+        Some( book )
+      }
       case Left( _ ) => None
     }
   }
