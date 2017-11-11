@@ -7,7 +7,6 @@ class BookTest extends FlatSpec with Matchers {
   "A Book" should "have name" in {
     import com.github.kuramapommel.ScalaGoF.GoF.Iterator.Book
     val name = "bookName"
-    val book = Book( name )
-    book.name should be( name )
+    Book( name ).name should be( name )
   }
 }
