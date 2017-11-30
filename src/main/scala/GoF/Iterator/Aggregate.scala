@@ -1,4 +1,4 @@
-package com.github.kuramapommel.ScalaGoF.GoF.Iterator
+package com.github.kuramapommel.scalagof.gof.Iterator
 
 trait Aggregate[T] {
   def iterator : Iterator[T]

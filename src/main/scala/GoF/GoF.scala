@@ -1,8 +1,11 @@
-package com.github.kuramapommel.ScalaGoF.GoF
+package com.github.kuramapommel.scalagof.gof
 
 final object GoF {
 
-  lazy val patterns = Set( Pattern.Iterator )
+  lazy val patterns = Set(
+    Pattern.Iterator,
+    Pattern.Adapter
+  )
 
   def run = for ( pattern <- patterns ) pattern.run
 
@@ -13,8 +16,8 @@ final object GoF {
   final object Pattern {
 
     final case object Iterator extends Pattern {
+      import com.github.kuramapommel.scalagof.gof.Iterator._
 
-      import com.github.kuramapommel.ScalaGoF.GoF.Iterator._
       private[this] val bookShelf = BookShelf( 4 )
 
       override def run = {
@@ -28,13 +31,23 @@ final object GoF {
           case Right( bookShelf ) => {
             val ite = bookShelf.iterator
             while ( ite.hasNext ) {
-              print( ite.next match {
+              println( ite.next match {
                 case Some( book ) => book.name
                 case None => "not exist!!"
               } )
             }
           }
         }
+      }
+    }
+
+    final case object Adapter extends Pattern {
+      import com.github.kuramapommel.scalagof.gof.adapter._
+
+      override def run = {
+        val p = PrintBanner( "Hello" )
+        p.printWeak
+        p.printStrong
       }
     }
   }

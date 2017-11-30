@@ -3,11 +3,11 @@ package com.github.kuramapommel.test.GoF.Iterator
 import org.scalatest._
 
 class BookShelfTest extends WordSpec with Matchers {
-  import com.github.kuramapommel.ScalaGoF.GoF.Iterator.BookShelf
+  import com.github.kuramapommel.scalagof.gof.Iterator.BookShelf
 
   "A bookShelf" should {
-    import com.github.kuramapommel.ScalaGoF.GoF.Iterator.Book
-    import com.github.kuramapommel.ScalaGoF.GoF.Iterator.BookShelfIterator
+    import com.github.kuramapommel.scalagof.gof.Iterator.Book
+    import com.github.kuramapommel.scalagof.gof.Iterator.BookShelfIterator
 
     "have a iterator" in {
         BookShelf( 1 ).appendBook( Book( "test" ) ) match {
@@ -28,7 +28,7 @@ class BookShelfTest extends WordSpec with Matchers {
     }
 
     "append a book and should have length which is equal max size" in {
-      import com.github.kuramapommel.ScalaGoF.GoF.Iterator.Book
+      import com.github.kuramapommel.scalagof.gof.Iterator.Book
 
       BookShelf( maxSize ).appendBook( Book( "test" ) ) match {
         case Right( bookShelf ) => bookShelf.length should be( maxSize )
@@ -37,7 +37,7 @@ class BookShelfTest extends WordSpec with Matchers {
     }
 
     "get book" in {
-      import com.github.kuramapommel.ScalaGoF.GoF.Iterator.Book
+      import com.github.kuramapommel.scalagof.gof.Iterator.Book
 
       ( for {
         bookshelf <- BookShelf( maxSize ).appendBook( Book( "test" ) )
@@ -59,7 +59,7 @@ class BookShelfTest extends WordSpec with Matchers {
     }
 
     "a bookshelf max size is 0 and trying append a book" in {
-      import com.github.kuramapommel.ScalaGoF.GoF.Iterator.Book
+      import com.github.kuramapommel.scalagof.gof.Iterator.Book
 
       BookShelf( 0 ).appendBook( Book( "test" ) ) match {
         case Left( "over max size" ) => succeed
@@ -70,11 +70,11 @@ class BookShelfTest extends WordSpec with Matchers {
 }
 
 class BookShelfIteratorTest extends WordSpec with Matchers {
-  import com.github.kuramapommel.ScalaGoF.GoF.Iterator.BookShelf
-  import com.github.kuramapommel.ScalaGoF.GoF.Iterator.BookShelfIterator
+  import com.github.kuramapommel.scalagof.gof.Iterator.BookShelf
+  import com.github.kuramapommel.scalagof.gof.Iterator.BookShelfIterator
 
   "When the bookshelfiterator has a bookshelf which is having max size which is more than 0, bookshelfiterator" should {
-    import com.github.kuramapommel.ScalaGoF.GoF.Iterator.Book
+    import com.github.kuramapommel.scalagof.gof.Iterator.Book
     val eitherBookShelf = BookShelf( 1 ).appendBook( Book( "test" ) )
 
     "have bookshelf" in {

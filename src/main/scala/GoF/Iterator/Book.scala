@@ -1,3 +1,3 @@
-package com.github.kuramapommel.ScalaGoF.GoF.Iterator
+package com.github.kuramapommel.scalagof.gof.Iterator
 
 final case class Book( name: String )
