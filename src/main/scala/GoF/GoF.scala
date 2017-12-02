@@ -5,7 +5,8 @@ final object GoF {
   lazy val patterns = Set(
     Pattern.Iterator,
     Pattern.Adapter,
-    Pattern.TemplateMethod
+    Pattern.TemplateMethod,
+    Pattern.FactoryMethod
   )
 
   def run = for ( pattern <- patterns ) pattern.run
@@ -57,6 +58,14 @@ final object GoF {
 
       override def run = {
         for ( display <-  List( CharDisplay( 'H' ), StringDisplay( "Hello, world." ), StringDisplay( "こんにちは。" ) ) ) display.display
+      }
+    }
+
+    final case object FactoryMethod extends Pattern {
+      import com.github.kuramapommel.scalagof.gof.factorymethod._
+
+      override def run = {
+        for ( idCard <- List( IDCard.create( "tom" ), IDCard.create( "john" ), IDCard.create( "damon" ) ) ) idCard.use
       }
     }
   }
