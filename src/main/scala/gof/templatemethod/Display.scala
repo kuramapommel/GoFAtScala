@@ -24,7 +24,9 @@ final case class CharDisplay( ch: Char ) extends AbstractDisplay {
   override def close = println( ">>" )
 }
 
-final case class StringDisplay( string: String, width: Int ) extends AbstractDisplay {
+final case class StringDisplay( string: String ) extends AbstractDisplay {
+
+  val width = string.getBytes.length
 
   override def open = printLine
 

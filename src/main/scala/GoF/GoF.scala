@@ -4,7 +4,8 @@ final object GoF {
 
   lazy val patterns = Set(
     Pattern.Iterator,
-    Pattern.Adapter
+    Pattern.Adapter,
+    Pattern.TemplateMethod
   )
 
   def run = for ( pattern <- patterns ) pattern.run
@@ -48,6 +49,14 @@ final object GoF {
         val p = PrintBanner( "Hello" )
         p.printWeak
         p.printStrong
+      }
+    }
+
+    final case object TemplateMethod extends Pattern {
+      import com.github.kuramapommel.scalagof.gof.templatemethod._
+
+      override def run = {
+        for ( display <-  List( CharDisplay( 'H' ), StringDisplay( "Hello, world." ), StringDisplay( "こんにちは。" ) ) ) display.display
       }
     }
   }
