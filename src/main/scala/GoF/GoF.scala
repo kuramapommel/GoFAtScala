@@ -6,7 +6,8 @@ final object GoF {
     Pattern.Iterator,
     Pattern.Adapter,
     Pattern.TemplateMethod,
-    Pattern.FactoryMethod
+    Pattern.FactoryMethod,
+    Pattern.Singleton
   )
 
   def run = for ( pattern <- patterns ) pattern.run
@@ -57,7 +58,7 @@ final object GoF {
       import com.github.kuramapommel.scalagof.gof.templatemethod._
 
       override def run = {
-        for ( display <-  List( CharDisplay( 'H' ), StringDisplay( "Hello, world." ), StringDisplay( "こんにちは。" ) ) ) display.display
+        for ( display <- List( CharDisplay( 'H' ), StringDisplay( "Hello, world." ), StringDisplay( "こんにちは。" ) ) ) display.display
       }
     }
 
@@ -66,6 +67,17 @@ final object GoF {
 
       override def run = {
         for ( idCard <- List( IDCard.create( "tom" ), IDCard.create( "john" ), IDCard.create( "damon" ) ) ) idCard.use
+      }
+    }
+
+    final case object Singleton extends Pattern {
+      import com.github.kuramapommel.scalagof.gof.singleton._
+
+      override def run = {
+        val obj1 = SingletonObject
+        val obj2 = SingletonObject
+
+        if ( obj1 == obj2 ) println( "同じインスタンス" ) else println( "異なるインスタンス" )
       }
     }
   }
