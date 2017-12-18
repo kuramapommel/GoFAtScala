@@ -13,7 +13,9 @@ final object GoF {
   def run = for ( pattern <- patterns ) pattern.run
 
   sealed trait Pattern {
+
     def run : Unit
+
   }
 
   final object Pattern {
@@ -42,6 +44,7 @@ final object GoF {
           }
         }
       }
+
     }
 
     final case object Adapter extends Pattern {
@@ -52,22 +55,21 @@ final object GoF {
         p.printWeak
         p.printStrong
       }
+
     }
 
     final case object TemplateMethod extends Pattern {
       import com.github.kuramapommel.scalagof.gof.templatemethod._
 
-      override def run = {
-        for ( display <- List( CharDisplay( 'H' ), StringDisplay( "Hello, world." ), StringDisplay( "こんにちは。" ) ) ) display.display
-      }
+      override def run = for ( display <- List( CharDisplay( 'H' ), StringDisplay( "Hello, world." ), StringDisplay( "こんにちは。" ) ) ) display.display
+
     }
 
     final case object FactoryMethod extends Pattern {
       import com.github.kuramapommel.scalagof.gof.factorymethod._
 
-      override def run = {
-        for ( idCard <- List( IDCard.create( "tom" ), IDCard.create( "john" ), IDCard.create( "damon" ) ) ) idCard.use
-      }
+      override def run = for ( idCard <- List( IDCard.create( "tom" ), IDCard.create( "john" ), IDCard.create( "damon" ) ) ) idCard.use
+
     }
 
     final case object Singleton extends Pattern {
@@ -79,6 +81,9 @@ final object GoF {
 
         if ( obj1 == obj2 ) println( "同じインスタンス" ) else println( "異なるインスタンス" )
       }
+
     }
+
   }
+
 }

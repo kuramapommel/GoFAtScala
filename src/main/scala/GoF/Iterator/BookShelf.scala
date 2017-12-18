@@ -1,6 +1,7 @@
 package com.github.kuramapommel.scalagof.gof.Iterator
 
 final case class BookShelfIterator( bookShelf: BookShelf ) extends Iterator[Book] {
+
   private[this] var index = 0
 
   override def hasNext = index < bookShelf.length
@@ -14,12 +15,14 @@ final case class BookShelfIterator( bookShelf: BookShelf ) extends Iterator[Book
       case Left( _ ) => None
     }
   }
+
 }
 
 final case class BookShelf( maxSize: Int ) extends Aggregate[Book] {
+
   private[this] var books : Array[Book] = Array.empty
 
-  private[this] def tryEither[T]( f: => T )( implicit onError: Throwable => Either[Throwable,T] = { t:Throwable => Left( t ) }) = {
+  private[this] def tryEither[T]( f: => T )( implicit onError: Throwable => Either[Throwable,T] = { t:Throwable => Left( t ) } ) = {
     try{
       Right( f )
     } catch {
@@ -39,7 +42,8 @@ final case class BookShelf( maxSize: Int ) extends Aggregate[Book] {
     }
   }
 
-  def length = books.length
+  val length = books.length
 
   override def iterator = BookShelfIterator( this )
+
 }
