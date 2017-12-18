@@ -8,7 +8,7 @@ final case class Banner( string: String ) {
 
 }
 
-final case class PrintBanner( string: String ) extends  Print {
+final case class PrintBanner( string: String ) extends Print {
 
   val banner = Banner( string )
 
