@@ -13,6 +13,7 @@ sealed abstract class AbstractDisplay {
     for ( _ <- 0 until 5 ) print
     close
   }
+  
 }
 
 final case class CharDisplay( ch: Char ) extends AbstractDisplay {
@@ -22,6 +23,7 @@ final case class CharDisplay( ch: Char ) extends AbstractDisplay {
   override def print = System.out.print( ch )
 
   override def close = println( ">>" )
+
 }
 
 final case class StringDisplay( string: String ) extends AbstractDisplay {
@@ -39,4 +41,5 @@ final case class StringDisplay( string: String ) extends AbstractDisplay {
     for ( _ <- 0 until width ) System.out.print( "-" )
     println( "+" )
   }
+
 }
